@@ -31,10 +31,13 @@ public class SelectorDeslizamiento extends AnchorPane {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("selector_deslizamiento.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
+        
         try {
-        fxmlLoader.load();
+            fxmlLoader.load();
+            
         } catch (IOException exception) {
-        throw new RuntimeException(exception);
+            throw new RuntimeException(exception);
+            
         }
         items = new ArrayList<>();
         selectedIndex = 0;

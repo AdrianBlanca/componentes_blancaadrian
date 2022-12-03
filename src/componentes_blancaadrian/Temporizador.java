@@ -7,11 +7,13 @@ package componentes_blancaadrian;
 import java.io.IOException;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
 /**
@@ -19,7 +21,7 @@ import javafx.util.Duration;
  *
  * @author usuario
  */
-public class Temporizador {
+public class Temporizador extends AnchorPane{
 
     @FXML
     private Label tiempo;
@@ -49,20 +51,23 @@ public class Temporizador {
           timeline.setCycleCount(Timeline.INDEFINITE);
           timeline.setAutoReverse(false);
           
-          timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), new EventHandler() {
+          KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
               @Override
-              public void handle(Event event) {
+              public void handle(ActionEvent event) {
                   int t = Integer.parseInt(tiempo.getText()) - 1;
+                  
                   tiempo.setText(String.valueOf(t));
+                  
                   if(t <= 0)
                       timeline.stop();
                   
               }
-              
+             
           
-          }));
+          });
           
-          timeline.play();
+          timeline.getKeyFrames().add(keyFrame);
+          timeline.playFromStart();
           
       }
       
