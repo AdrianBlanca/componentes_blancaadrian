@@ -42,7 +42,7 @@ public class Temporizador extends AnchorPane{
       }
     
       public void setTiempo(int t) {
-          tiempo.setText(String.valueOf(t));
+          tiempo.setText(String.valueOf(t) + "s");
           
       }
       
@@ -54,9 +54,9 @@ public class Temporizador extends AnchorPane{
           KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
               @Override
               public void handle(ActionEvent event) {
-                  int t = Integer.parseInt(tiempo.getText()) - 1;
+                  int t = Integer.parseInt(tiempo.getText().substring(0, tiempo.getText().length() - 1)) - 1;
                   
-                  tiempo.setText(String.valueOf(t));
+                  tiempo.setText(String.valueOf(t) + "s");
                   
                   if(t <= 0)
                       timeline.stop();
